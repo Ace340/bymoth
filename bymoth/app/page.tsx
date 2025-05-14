@@ -2,11 +2,12 @@
 
 import Head from 'next/head';
 import Header from '../components/Header';
-import Hero from '../components/Hero';
+// import Hero from '../components/Hero';
 import About from '../components/About';
 import Events from '../components/Events';
 // import SpotifyPlaylist from '../components/SpotifyPlaylist';
 // import InstagramFeed from '../components/InstagramFeed';
+import HeroFramer from '@/components/HeroFramer';
 import Footer from '../components/Footer';
 
 export default function Home() {
@@ -17,7 +18,8 @@ export default function Home() {
         <meta name="description" content="Epic Sound Productions - Your premier music event producer" />
       </Head>
       <Header />
-      <Hero />
+      <HeroFramer />
+      {/* <Hero /> */}
       <About />
       <Events />
       {/*<SpotifyPlaylist />
