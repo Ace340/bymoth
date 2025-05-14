@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
 // Lista de imágenes (duplicada para simular bucle)
@@ -22,6 +22,7 @@ export default function HeroFramer() {
   const heroRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [imagesLoaded, setImagesLoaded] = useState(0);
+  const [showIntro, setShowIntro] = useState(true);
 
   const handleImageLoad = () => {
     setImagesLoaded((prev) => {
@@ -31,9 +32,10 @@ export default function HeroFramer() {
     });
   };
 
+  // Animación del carrusel
   useEffect(() => {
-    if (imagesLoaded !== images.length || !carouselRef.current) {
-      console.log('Esperando carga de imágenes o carouselRef');
+    if (imagesLoaded !== images.length || !carouselRef.current || showIntro) {
+      console.log('Esperando carga de imágenes, carouselRef o fin de intro');
       return;
     }
 
@@ -43,9 +45,9 @@ export default function HeroFramer() {
     let x = 0;
 
     const animate = () => {
-      x -= 1; // Velocidad aumentada
+      x -= 0.5; // Velocidad aumentada
       if (Math.abs(x) > totalWidth) {
-        x += totalWidth; // Reiniciar al llegar a la mitad
+        x += totalWidth;
         console.log('Reiniciando carrusel, x:', x);
       }
       if (carouselRef.current) {
@@ -58,7 +60,7 @@ export default function HeroFramer() {
     const animationId = requestAnimationFrame(animate);
 
     const handleResize = () => {
-      x = 0; // Reiniciar posición al redimensionar
+      x = 0;
       console.log('Redimensionando, reiniciando x');
       if (carouselRef.current) {
         carouselRef.current.style.transform = `translateX(0px)`;
@@ -72,36 +74,78 @@ export default function HeroFramer() {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', handleResize);
     };
-  }, [imagesLoaded]);
+  }, [imagesLoaded, showIntro]);
 
   return (
-    <section id="home" className="h-screen flex items-center justify-center" ref={heroRef}>
-      <div className="text-center">
-        <h2 className="text-4xl sm:text-5xl font-extrabold mb-4">Who the F*ck Eat Mints?</h2>
-        <p className="text-base sm:text-lg mb-6">By Moth</p>
-        <div className="overflow-hidden">
-          <div className="flex space-x-2" ref={carouselRef}>
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 w-full max-w-[500px] h-[375px] sm:w-[500px] sm:h-[375px] relative bg-white p-2 rounded-lg shadow-lg border-4 border-[#eddab8]"
+    <div className="relative min-h-screen">
+      {/* Animación inicial */}
+      <AnimatePresence>
+        {showIntro && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, delay: 2.5 }}
+            onAnimationComplete={() => setShowIntro(false)}
+          >
+            {/* Contenedor centrado para el texto */}
+            <div className="flex items-center justify-center w-full max-w-[90vw] sm:max-w-[80vw] px-4">
+              <motion.h1
+                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white text-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
               >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover rounded-md"
-                  priority={index === 0}
-                  sizes="(max-width: 640px) 100vw, 500px"
-                  quality={85}
-                  onLoad={handleImageLoad}
-                  onError={() => console.error(`Error cargando imagen ${image.src}`)}
-                />
-              </div>
-            ))}
+                Who the F*ck Eat Mints?
+              </motion.h1>
+            </div>
+            {/* Capas de transición (cierre vertical) */}
+            <motion.div
+              className="absolute top-0 left-0 w-full h-1/2 bg-black"
+              initial={{ y: 0 }}
+              animate={{ y: '-100%' }}
+              transition={{ duration: 0.8, delay: 1.5, ease: 'easeInOut' }}
+            />
+            <motion.div
+              className="absolute bottom-0 left-0 w-full h-1/2 bg-black"
+              initial={{ y: 0 }}
+              animate={{ y: '100%' }}
+              transition={{ duration: 0.8, delay: 1.5, ease: 'easeInOut' }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Contenido principal */}
+      <section id="home" className="h-screen flex items-center justify-center" ref={heroRef}>
+        <div className="text-center">
+          <h2 className="text-4xl sm:text-5xl font-extrabold mb-4">Who the F*ck Eat Mints?</h2>
+          <p className="text-base sm:text-lg mb-6">By MOTH</p>
+          <div className="overflow-hidden">
+            <div className="flex space-x-2" ref={carouselRef}>
+              {images.map((image, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 w-full max-w-[500px] h-[375px] sm:w-[500px] sm:h-[375px] relative bg-white p-2 rounded-lg shadow-lg border-4 border-[#eddab8]"
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover rounded-md"
+                    priority={index === 0}
+                    sizes="(max-width: 640px) 100vw, 500px"
+                    quality={85}
+                    onLoad={handleImageLoad}
+                    onError={() => console.error(`Error cargando imagen ${image.src}`)}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
