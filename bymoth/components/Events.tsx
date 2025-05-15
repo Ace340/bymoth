@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,11 +12,24 @@ interface Event {
   title: string;
   date: string;
   link: string;
+  image: string;
 }
 
 const events: Event[] = [
-  { id: 1, title: 'Summer Beats 2025', date: 'June 15, 2025', link: 'https://ticketlink.com/summerbeats' },
-  { id: 2, title: 'Electro Nights', date: 'July 20, 2025', link: 'https://ticketlink.com/electronights' },
+  {
+    id: 1,
+    title: 'Summer Beats 2025',
+    date: 'June 15, 2025',
+    link: 'https://ticketlink.com/summerbeats',
+    image: '/Flyer1.png',
+  },
+  {
+    id: 2,
+    title: 'Electro Nights',
+    date: 'July 20, 2025',
+    link: 'https://ticketlink.com/electronights',
+    image: '/Flyer1.png',
+  },
 ];
 
 export default function Events() {
@@ -24,21 +38,21 @@ export default function Events() {
   useEffect(() => {
     if (eventsRef.current) {
       (gsap.utils.toArray('.event-card') as HTMLElement[]).forEach((card: HTMLElement, index: number) => {
+        console.log(`Setting up animation for card ${index + 1}, ID: ${card.dataset.eventId}`); // Debug: Track setup
         gsap.fromTo(
           card,
-          { opacity: 0, scale: 0.8 },
+          { opacity: 0, y: 100 },
           {
             opacity: 1,
-            scale: 1,
+            y: 0,
             duration: 0.8,
-            delay: index * 0.2,
+            delay: index * 0.3,
             ease: 'power2.out',
             scrollTrigger: {
               trigger: card,
-              start: 'top 85%',
-              end: 'top 30%',
-              scrub: 1,
-              toggleActions: 'play none none reverse',
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+              onEnter: () => console.log(`Card ${index + 1} entered viewport`), // Debug: Track trigger
             },
           }
         );
@@ -51,14 +65,33 @@ export default function Events() {
   }, []);
 
   return (
-    <section id="events" className="py-20" ref={eventsRef}>
+    <section
+      id="events"
+      className="min-h-screen py-20 bg-[url('/foto1.jpg')] bg-fixed bg-cover bg-center overflow-x-hidden"
+      ref={eventsRef}
+    >
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-10">Upcoming Events</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {events.map((event) => (
-            <div key={event.id} className="event-card bg-gray-800 p-6 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-semibold mb-2">{event.title}</h3>
-              <p className="text-gray-400 mb-4">{event.date}</p>
+        <h2 className="text-5xl font-bold text-center mb-12 text-white">Upcoming Events</h2>
+        <div className="space-y-24">
+          {events.map((event, index) => (
+            <div
+              key={event.id}
+              data-event-id={event.id} // Debug: Add event ID for tracking
+              className="event-card sticky top-[10vh] bg-gray-900/80 p-6 rounded-lg shadow-xl w-[280px] md:w-[320px] mx-auto"
+              style={{ top: `${10 + index * 5}vh` }}
+            >
+              <div className="relative w-full h-64 mb-4">
+                <Image
+                  src={event.image}
+                  alt={`${event.title} Flyer`}
+                  fill
+                  className="object-cover rounded-md"
+                  sizes="(max-width: 768px) 280px, 320px"
+                  priority={index === 0}
+                />
+              </div>
+              <h3 className="text-2xl font-semibold mb-2 text-white">{event.title}</h3>
+              <p className="text-gray-300 mb-4">{event.date}</p>
               <a
                 href={event.link}
                 target="_blank"

@@ -52,7 +52,7 @@ export default function HeroFramer() {
       }
       if (carouselRef.current) {
         carouselRef.current.style.transform = `translateX(${x}px)`;
-        console.log('Moviendo carrusel, x:', x);
+        // console.log('Moviendo carrusel, x:', x);
       }
       requestAnimationFrame(animate);
     };
@@ -77,12 +77,12 @@ export default function HeroFramer() {
   }, [imagesLoaded, showIntro]);
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen overflow-x-hidden">
       {/* Animación inicial */}
       <AnimatePresence>
         {showIntro && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-[#1a1914]"
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -118,16 +118,16 @@ export default function HeroFramer() {
       </AnimatePresence>
 
       {/* Contenido principal */}
-      <section id="home" className="h-screen flex items-center justify-center" ref={heroRef}>
-        <div className="text-center">
-          <h2 className="text-4xl sm:text-5xl font-extrabold mb-4">Who the F*ck Eat Mints?</h2>
-          <p className="text-base sm:text-lg mb-6">By MOTH</p>
-          <div className="overflow-hidden">
+      <section id="home" className="h-screen flex items-center justify-center bg-[#1a1914] overflow-x-hidden" ref={heroRef}>
+        <div className="text-center max-w-[100vw]">
+          <h2 className="text-4xl sm:text-5xl font-extrabold mb-4 text-white">Who the F*ck Eat Mints?</h2>
+          <p className="text-base sm:text-lg mb-6 text-white">by MOTH</p>
+          <div className="overflow-hidden max-w-[100vw]">
             <div className="flex space-x-2" ref={carouselRef}>
               {images.map((image, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 w-full max-w-[500px] h-[375px] sm:w-[500px] sm:h-[375px] relative bg-white p-2 rounded-lg shadow-lg border-4 border-[#eddab8]"
+                  className="flex-shrink-0 w-[300px] h-[225px] sm:w-[400px] sm:h-[300px] relative bg-white p-2 rounded-lg shadow-lg border-4 border-[#eddab8]"
                 >
                   <Image
                     src={image.src}
@@ -135,7 +135,7 @@ export default function HeroFramer() {
                     fill
                     className="object-cover rounded-md"
                     priority={index === 0}
-                    sizes="(max-width: 640px) 100vw, 500px"
+                    sizes="(max-width: 640px) 300px, 400px"
                     quality={85}
                     onLoad={handleImageLoad}
                     onError={() => console.error(`Error cargando imagen ${image.src}`)}

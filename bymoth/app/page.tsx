@@ -12,7 +12,7 @@ import Footer from '../components/Footer';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white">
+    <main className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white w-full overflow-x-hidden">
       <Head>
         <title>Musical Events | Epic Sound Productions</title>
         <meta name="description" content="Epic Sound Productions - Your premier music event producer" />
@@ -25,6 +25,6 @@ export default function Home() {
       {/*<SpotifyPlaylist />
       <InstagramFeed />*/}
       <Footer />
-    </div>
+    </main>
   );
 }
