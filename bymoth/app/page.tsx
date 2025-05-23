@@ -9,6 +9,7 @@ import Events from '../components/Events';
 // import InstagramFeed from '../components/InstagramFeed';
 import HeroFramer from '@/components/HeroFramer';
 import Footer from '../components/Footer';
+import IdsOnTheHouse from '@/components/IdsOnTheHouse';
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       {/* <Hero /> */}
       <About />
       <Events />
+      <IdsOnTheHouse />
       {/*<SpotifyPlaylist />
       <InstagramFeed />*/}
       <Footer />
