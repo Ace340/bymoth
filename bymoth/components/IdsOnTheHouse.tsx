@@ -79,11 +79,11 @@ export default function IdsOnTheHouse() {
   return (
     <section
       id="ids-on-the-house"
-      className="min-h-screen py-20 bg-[url('/background.jpg')] bg-fixed bg-cover bg-center overflow-x-hidden"
+      className="min-h-screen py-20 bg-[#1a1914] bg-fixed bg-cover bg-center overflow-x-hidden"
       ref={sectionRef}
     >
       <div className="container mx-auto px-4 max-w-5xl">
-        <h2 className="text-5xl font-bold text-center mb-12 text-white">Id's on the House</h2>
+        <h2 className="text-5xl font-bold text-center font-myfont mb-12 text-white">Id's on the House</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left Side: Image + Text */}
           <div className="flex flex-col items-center md:items-start">
@@ -92,7 +92,7 @@ export default function IdsOnTheHouse() {
               className="relative w-[280px] md:w-[320px] h-64 mb-6"
             >
               <Image
-                src="/ids-poster.jpg"
+                src="/idoth.png"
                 alt="Id's on the House Poster"
                 fill
                 className="object-cover rounded-md"
@@ -101,8 +101,8 @@ export default function IdsOnTheHouse() {
               />
             </div>
             <div className="text-center md:text-left">
-              <h3 className="text-3xl font-semibold mb-4 text-white">Discover New Beats</h3>
-              <p className="text-lg text-gray-300">
+              <h3 className="text-3xl font-semibold mb-4 text-white font-myfont">Discover New Beats</h3>
+              <p className="text-lg text-gray-300 font-joorick">
                 Explore our curated playlists and tracks, handpicked to elevate your vibe. From electronic to chill, we’ve got you covered.
               </p>
             </div>
@@ -114,7 +114,7 @@ export default function IdsOnTheHouse() {
               <div
                 key={embed.id}
                 data-embed-id={embed.id}
-                className="spotify-card bg-gray-900/80 p-4 rounded-lg shadow-xl w-full max-w-[320px] mx-auto"
+                className="spotify-card p-4 rounded-lg shadow-xl w-full max-w-[320px] mx-auto"
               >
                 <h4 className="text-xl font-semibold mb-2 text-white">{embed.title}</h4>
                 <iframe

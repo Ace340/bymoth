@@ -3,8 +3,9 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export default function About() {
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -14,6 +15,7 @@ export default function About() {
   useEffect(() => {
     // Title animation (left to right)
     if (titleRef.current) {
+      console.log('Setting up title animation'); // Debug: Track title animation
       gsap.fromTo(
         titleRef.current,
         { opacity: 0, x: -100 },
@@ -26,32 +28,42 @@ export default function About() {
             trigger: aboutRef.current,
             start: 'top 80%',
             toggleActions: 'play none none none',
+            onEnter: () => console.log('Title entered viewport'),
           },
         }
       );
     }
 
-    // Paragraph animation (fade in)
+    // Paragraph animation (SplitText, words slide up)
     if (textRef.current) {
-      gsap.fromTo(
-        textRef.current,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: aboutRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
+      const paragraphs = textRef.current.querySelectorAll('p');
+      console.log('Paragraphs found for SplitText:', paragraphs.length); // Debug: Track paragraphs
+      paragraphs.forEach((p, index) => {
+        const split = new SplitText(p, { type: 'words' });
+        console.log(`SplitText words for paragraph ${index + 1}:`, split.words.length); // Debug: Track word count
+        gsap.fromTo(
+          split.words,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.05,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: aboutRef.current,
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+              onEnter: () => console.log(`Paragraph ${index + 1} animation triggered`),
+            },
+          }
+        );
+      });
     }
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      // Note: SplitText instances are automatically cleaned up by GSAP
     };
   }, []);
 
@@ -59,15 +71,16 @@ export default function About() {
     <section id="about" className="py-20 bg-[#ead8b5]" ref={aboutRef}>
       <div className="container mx-auto px-4">
         <h2
-          className="text-5xl sm:text-6xl font-bold text-[#1e1e1a] sticky top-0 bg-[#ead8b5] py-4 z-10"
+          className="text-5xl sm:text-6xl font-bold font-myfont text-[#1e1e1a] sticky top-0 bg-[#ead8b5] py-4 z-10"
           ref={titleRef}
         >
           About MOTH
         </h2>
         <div className="pt-10" ref={textRef}>
-          <p className="text-lg max-w-2xl mx-auto text-center text-[#1e1e1a]">
+          <p className="text-xl max-w-2xl mx-auto text-center text-[#1e1e1a] font-joorick">
             Mints On The House is more than an event production company — we’re a vibrant community united by a deep love for house music, connection, and creative expression.
-
+          </p>
+          <p className="text-xl max-w-2xl mx-auto text-center text-[#1e1e1a] mt-4 font-joorick">
             Born from the belief that music and art have the power to bring souls together, we craft unforgettable experiences where rhythm meets intention, and every beat opens the door to something deeper. Our events are a celebration of freedom, inclusivity, and the magic that happens when people come together to move, feel, and connect.
           </p>
         </div>

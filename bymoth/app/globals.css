@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'Hangout';
+  src: url('/fonts/Hangout3D.ttf') format('truetype');
+  font-weight: 400; 
+  font-style: normal;
+  font-display: swap; 
+}
+
+@font-face {
+  font-family: 'Joorick';
+  src: url('/fonts/Joorick.ttf') format('truetype');
+  font-weight: 400; 
+  font-style: normal;
+  font-display: swap; 
+}
+
 @import "tailwindcss";
 
 :root {
@@ -30,4 +46,12 @@ body {
 html {
   width: 100%;
   overflow-x: hidden;
+}
+
+.font-myfont {
+  font-family: 'Hangout', sans-serif;
+}
+
+.font-joorick {
+  font-family: 'Joorick', sans-serif;
 }

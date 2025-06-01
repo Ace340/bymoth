@@ -92,7 +92,7 @@ export default function HeroFramer() {
             {/* Contenedor centrado para el texto */}
             <div className="flex items-center justify-center w-full max-w-[90vw] sm:max-w-[80vw] px-4">
               <motion.h1
-                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white text-center"
+                className="text-4xl sm:text-5xl lg:text-6xl font-myfont text-white text-center"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -120,8 +120,8 @@ export default function HeroFramer() {
       {/* Contenido principal */}
       <section id="home" className="h-screen flex items-center justify-center bg-[#1a1914] overflow-x-hidden" ref={heroRef}>
         <div className="text-center max-w-[100vw]">
-          <h2 className="text-4xl sm:text-5xl font-extrabold mb-4 text-white">Who the F*ck Eat Mints?</h2>
-          <p className="text-base sm:text-lg mb-6 text-white">by MOTH</p>
+          <h2 className="text-4xl sm:text-5xl font-extrabold font-myfont mb-4 text-white">Who the F*ck Eat Mints?</h2>
+          <p className="text-base sm:text-lg font-joorick mb-6 text-white">by MOTH</p>
           <div className="overflow-hidden max-w-[100vw]">
             <div className="flex space-x-2" ref={carouselRef}>
               {images.map((image, index) => (

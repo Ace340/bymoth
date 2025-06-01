@@ -71,7 +71,7 @@ export default function Events() {
       ref={eventsRef}
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-5xl font-bold text-center mb-12 text-white">Upcoming Events</h2>
+        <h2 className="text-5xl font-bold text-center font-myfont mb-12 text-white">Upcoming Events</h2>
         <div className="space-y-24">
           {events.map((event, index) => (
             <div
