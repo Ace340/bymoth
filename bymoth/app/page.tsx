@@ -15,8 +15,8 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white w-full overflow-x-hidden">
       <Head>
-        <title>Musical Events | Epic Sound Productions</title>
-        <meta name="description" content="Epic Sound Productions - Your premier music event producer" />
+        <title>MINTS On The House</title>
+        <meta name="description" content="MINTS On The House - Music never been this good" />
       </Head>
       <Header />
       <HeroFramer />
