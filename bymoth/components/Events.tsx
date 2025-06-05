@@ -18,18 +18,18 @@ interface Event {
 const events: Event[] = [
   {
     id: 1,
-    title: 'Summer Beats 2025',
-    date: 'June 15, 2025',
-    link: 'https://ticketlink.com/summerbeats',
-    image: '/Flyer1.png',
+    title: 'MOTH at NYC',
+    date: 'July 25, 2025',
+    link: 'https://ra.co/events/2167964',
+    image: '/event1.png',
   },
-  {
-    id: 2,
-    title: 'Electro Nights',
-    date: 'July 20, 2025',
-    link: 'https://ticketlink.com/electronights',
-    image: '/Flyer1.png',
-  },
+  // {
+  //   id: 2,
+  //   title: 'Electro Nights',
+  //   date: 'July 20, 2025',
+  //   link: 'https://ticketlink.com/electronights',
+  //   image: '/Flyer1.png',
+  // },
 ];
 
 export default function Events() {
@@ -67,7 +67,7 @@ export default function Events() {
   return (
     <section
       id="events"
-      className="min-h-screen py-20 bg-[url('/foto1.jpg')] bg-fixed bg-cover bg-center overflow-x-hidden"
+      className="min-h-screen py-20 bg-[url('/moth1.jpg')] bg-fixed bg-cover bg-center overflow-x-hidden"
       ref={eventsRef}
     >
       <div className="container mx-auto px-4">

@@ -6,16 +6,16 @@ import Image from 'next/image';
 
 // Lista de imágenes (duplicada para simular bucle)
 const images: { src: string; alt: string }[] = [
-  { src: '/foto1.jpg', alt: 'Event 1' },
-  { src: '/foto2.jpg', alt: 'Event 2' },
-  { src: '/foto3.jpg', alt: 'Event 3' },
-  { src: '/foto4.jpg', alt: 'Event 4' },
-  { src: '/foto5.jpg', alt: 'Event 5' },
-  { src: '/foto1.jpg', alt: 'Event 1' },
-  { src: '/foto2.jpg', alt: 'Event 2' },
-  { src: '/foto3.jpg', alt: 'Event 3' },
-  { src: '/foto4.jpg', alt: 'Event 4' },
-  { src: '/foto5.jpg', alt: 'Event 5' },
+  { src: '/moth2.jpg', alt: 'Event 1' },
+  { src: '/moth3.jpg', alt: 'Event 2' },
+  { src: '/moth4.jpg', alt: 'Event 3' },
+  { src: '/moth5.jpg', alt: 'Event 4' },
+  { src: '/moth2.jpg', alt: 'Event 5' },
+  { src: '/moth3.jpg', alt: 'Event 1' },
+  { src: '/moth4.jpg', alt: 'Event 2' },
+  { src: '/moth5.jpg', alt: 'Event 3' },
+  // { src: '/foto4.jpg', alt: 'Event 4' },
+  // { src: '/foto5.jpg', alt: 'Event 5' },
 ];
 
 export default function HeroFramer() {
@@ -97,7 +97,7 @@ export default function HeroFramer() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, ease: 'easeOut' }}
               >
-                Who the F*ck Eat Mints?
+                Who the F*ck Eats Mints?
               </motion.h1>
             </div>
             {/* Capas de transición (cierre vertical) */}
@@ -120,7 +120,7 @@ export default function HeroFramer() {
       {/* Contenido principal */}
       <section id="home" className="h-screen flex items-center justify-center bg-[#1a1914] overflow-x-hidden" ref={heroRef}>
         <div className="text-center max-w-[100vw]">
-          <h2 className="text-4xl sm:text-5xl font-extrabold font-myfont mb-4 text-white">Who the F*ck Eat Mints?</h2>
+          <h2 className="text-4xl sm:text-5xl font-extrabold font-myfont mb-4 text-white">Who the F*ck Eats Mints?</h2>
           <p className="text-base sm:text-lg font-joorick mb-6 text-white">by MOTH</p>
           <div className="overflow-hidden max-w-[100vw]">
             <div className="flex space-x-2" ref={carouselRef}>
