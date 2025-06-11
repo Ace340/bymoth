@@ -83,7 +83,7 @@ export default function IdsOnTheHouse() {
       ref={sectionRef}
     >
       <div className="container mx-auto px-4 max-w-5xl">
-        <h2 className="text-5xl font-bold text-center font-myfont mb-12 text-white">Id's on the House</h2>
+        <h2 className="text-5xl font-bold text-left font-myfont mb-12 text-white">Id's on the House</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left Side: Image + Text */}
           <div className="flex flex-col items-center md:items-start">
@@ -102,8 +102,11 @@ export default function IdsOnTheHouse() {
             </div>
             <div className="text-center md:text-left">
               <h3 className="text-3xl font-semibold mb-4 text-white font-myfont">Discover New Beats</h3>
-              <p className="text-lg text-gray-300 font-joorick">
+              <p className="text-xl text-gray-300 font-joorick text-center">
                 Explore our curated playlists and tracks, handpicked to elevate your vibe. From electronic to chill, we’ve got you covered.
+              </p>
+              <p className="text-xl text-gray-300 font-joorick text-center">
+                MINT’s fav tracks. Curated By Mr. CA, IZQ, Johann, Juan, Manu and Ryan White. Updated every 1st.
               </p>
             </div>
           </div>
@@ -116,7 +119,6 @@ export default function IdsOnTheHouse() {
                 data-embed-id={embed.id}
                 className="spotify-card p-4 rounded-lg shadow-xl w-full max-w-[320px] mx-auto"
               >
-                <h4 className="text-xl font-semibold mb-2 text-white">{embed.title}</h4>
                 <iframe
                   src={embed.embedUrl}
                   width="100%"

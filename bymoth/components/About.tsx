@@ -68,19 +68,19 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" className="py-20 bg-[#ead8b5]" ref={aboutRef}>
+    <section id="about" className="py-20 bg-[#cd2027]" ref={aboutRef}>
       <div className="container mx-auto px-4">
         <h2
-          className="text-5xl sm:text-6xl font-bold font-myfont text-[#1e1e1a] sticky top-0 bg-[#ead8b5] py-4 z-10"
+          className="text-5xl sm:text-6xl font-bold font-myfont text-[#1e1e1a] sticky top-0 bg-[#cd2027] py-4 z-10"
           ref={titleRef}
         >
           About MOTH
         </h2>
         <div className="pt-10" ref={textRef}>
-          <p className="text-xl max-w-2xl mx-auto text-center text-[#1e1e1a] font-joorick">
+          <p className="text-xl max-w-2xl mx-auto text-center text-[#1e1e1a] font-joorick tracking-wider">
             Mints On The House is more than an event production company — we’re a vibrant community united by a deep love for house music, connection, and creative expression.
           </p>
-          <p className="text-xl max-w-2xl mx-auto text-center text-[#1e1e1a] mt-4 font-joorick">
+          <p className="text-xl max-w-2xl mx-auto text-center text-[#1e1e1a] mt-4 font-joorick tracking-wider">
             Born from the belief that music and art have the power to bring souls together, we craft unforgettable experiences where rhythm meets intention, and every beat opens the door to something deeper. Our events are a celebration of freedom, inclusivity, and the magic that happens when people come together to move, feel, and connect.
           </p>
         </div>

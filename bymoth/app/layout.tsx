@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Mints On The House",
-  description: "Who the F*ck Eat Mints?",
+  description: "Who the F*ck Eats Mints?",
 };
 
 export default function RootLayout({

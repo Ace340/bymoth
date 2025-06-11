@@ -71,16 +71,16 @@ export default function Events() {
       ref={eventsRef}
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-5xl font-bold text-center font-myfont mb-12 text-white">Upcoming Events</h2>
+        <h2 className="text-5xl font-bold text-left font-myfont mb-12 text-white">Upcoming Events</h2>
         <div className="space-y-24">
           {events.map((event, index) => (
             <div
               key={event.id}
               data-event-id={event.id} // Debug: Add event ID for tracking
-              className="event-card sticky top-[10vh] bg-gray-900/80 p-6 rounded-lg shadow-xl w-[280px] md:w-[320px] mx-auto"
+              className="event-card sticky top-[10vh] bg-black p-6 rounded-lg shadow-xl w-[280px] md:w-[320px] mx-auto"
               style={{ top: `${10 + index * 5}vh` }}
             >
-              <div className="relative w-full h-64 mb-4">
+              <div className="relative w-full h-100 mb-4">
                 <Image
                   src={event.image}
                   alt={`${event.title} Flyer`}
@@ -90,16 +90,18 @@ export default function Events() {
                   priority={index === 0}
                 />
               </div>
-              <h3 className="text-2xl font-semibold mb-2 text-white">{event.title}</h3>
-              <p className="text-gray-300 mb-4">{event.date}</p>
+              <div className="flex flex-col items-center">
+              <h3 className="text-2xl md:text-2xl font-myfont font-semibold mb-2 text-white text-center">{event.title}</h3>
+              <p className="text-gray-300 mb-4 text-center font-joorick tracking-wide">{event.date}</p>
               <a
                 href={event.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded"
+                className="w-full bg-[#cd2027] hover:bg-[#eddab8] hover:text-black text-white font-joorick md:text-lg py-3 px-4 rounded text-center tracking-widest"
               >
                 Buy Tickets
               </a>
+            </div>
             </div>
           ))}
         </div>

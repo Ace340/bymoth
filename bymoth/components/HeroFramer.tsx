@@ -123,11 +123,11 @@ export default function HeroFramer() {
           <h2 className="text-4xl sm:text-5xl font-extrabold font-myfont mb-4 text-white">Who the F*ck Eats Mints?</h2>
           <p className="text-base sm:text-lg font-joorick mb-6 text-white">by MOTH</p>
           <div className="overflow-hidden max-w-[100vw]">
-            <div className="flex space-x-2" ref={carouselRef}>
+            <div className="flex space-x-8" ref={carouselRef}>
               {images.map((image, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 w-[300px] h-[225px] sm:w-[400px] sm:h-[300px] relative bg-white p-2 rounded-lg shadow-lg border-4 border-[#eddab8]"
+                  className="flex-shrink-0 w-[300px] h-[600px] sm:w-[400px] sm:h-[600px] relative bg-white p-2 rounded-lg shadow-lg border-4 border-[#eddb8a]"
                 >
                   <Image
                     src={image.src}
