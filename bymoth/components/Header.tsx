@@ -72,7 +72,6 @@ export default function Header() {
               ease: 'power2.in',
             });
           }
-          console.log('Scroll stopped, logo hidden'); // Debug
         }, 1000);
       }
     };
@@ -103,7 +102,7 @@ export default function Header() {
         <div className="flex items-center space-x-4 mx-auto md:mx-0">
           <Link href="#home" ref={logoRef}>
             <Image
-              src="/logoMINTS.png"
+              src="/logomints.png"
               alt="MOTH Logo"
               width={60}
               height={60}

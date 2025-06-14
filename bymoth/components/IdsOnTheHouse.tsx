@@ -29,7 +29,6 @@ export default function IdsOnTheHouse() {
     if (sectionRef.current) {
       // Animate left image
       if (imageRef.current) {
-        console.log('Setting up animation for image'); // Debug: Track image animation
         gsap.fromTo(
           imageRef.current,
           { opacity: 0, y: 100 },
@@ -50,7 +49,6 @@ export default function IdsOnTheHouse() {
 
       // Animate Spotify cards
       (gsap.utils.toArray('.spotify-card') as HTMLElement[]).forEach((card: HTMLElement, index: number) => {
-        console.log(`Setting up animation for Spotify card ${index + 1}, ID: ${card.dataset.embedId}`); // Debug: Track card animation
         gsap.fromTo(
           card,
           { opacity: 0, y: 100 },

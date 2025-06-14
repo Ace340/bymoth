@@ -14,8 +14,6 @@ const images: { src: string; alt: string }[] = [
   { src: '/moth3.jpg', alt: 'Event 1' },
   { src: '/moth4.jpg', alt: 'Event 2' },
   { src: '/moth5.jpg', alt: 'Event 3' },
-  // { src: '/foto4.jpg', alt: 'Event 4' },
-  // { src: '/foto5.jpg', alt: 'Event 5' },
 ];
 
 export default function HeroFramer() {
@@ -35,11 +33,9 @@ export default function HeroFramer() {
   // Animación del carrusel
   useEffect(() => {
     if (imagesLoaded !== images.length || !carouselRef.current || showIntro) {
-      console.log('Esperando carga de imágenes, carouselRef o fin de intro');
       return;
     }
 
-    console.log('Iniciando animación del carrusel');
 
     const totalWidth = carouselRef.current.scrollWidth / 2;
     let x = 0;
@@ -48,11 +44,9 @@ export default function HeroFramer() {
       x -= 0.5; // Velocidad aumentada
       if (Math.abs(x) > totalWidth) {
         x += totalWidth;
-        console.log('Reiniciando carrusel, x:', x);
       }
       if (carouselRef.current) {
         carouselRef.current.style.transform = `translateX(${x}px)`;
-        // console.log('Moviendo carrusel, x:', x);
       }
       requestAnimationFrame(animate);
     };
@@ -61,7 +55,6 @@ export default function HeroFramer() {
 
     const handleResize = () => {
       x = 0;
-      console.log('Redimensionando, reiniciando x');
       if (carouselRef.current) {
         carouselRef.current.style.transform = `translateX(0px)`;
       }

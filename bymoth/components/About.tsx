@@ -15,7 +15,6 @@ export default function About() {
   useEffect(() => {
     // Title animation (left to right)
     if (titleRef.current) {
-      console.log('Setting up title animation'); // Debug: Track title animation
       gsap.fromTo(
         titleRef.current,
         { opacity: 0, x: -100 },
@@ -37,10 +36,8 @@ export default function About() {
     // Paragraph animation (SplitText, words slide up)
     if (textRef.current) {
       const paragraphs = textRef.current.querySelectorAll('p');
-      console.log('Paragraphs found for SplitText:', paragraphs.length); // Debug: Track paragraphs
       paragraphs.forEach((p, index) => {
         const split = new SplitText(p, { type: 'words' });
-        console.log(`SplitText words for paragraph ${index + 1}:`, split.words.length); // Debug: Track word count
         gsap.fromTo(
           split.words,
           { opacity: 0, y: 50 },
